@@ -5,14 +5,14 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-var index = require('./routes/index');
-var juuso = require('./routes/juuso');
-var about = require('./routes/about');
+var index = require('./app_server/routes/index');
+var users = require('./app_server/routes/addrecipe');
+var about = require('./app_server/routes/searchrecipes');
 
 var app = express();
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', path.join(__dirname, 'app_server', 'views'));
 app.set('view engine', 'pug');
 
 // uncomment after placing your favicon in /public
@@ -24,7 +24,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
-app.use('/juuso', juuso);
+app.use('/users', users);
 app.use('/about', about);
 
 // catch 404 and forward to error handler
